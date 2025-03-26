@@ -187,7 +187,7 @@
   <!-- Top Navigation Menu -->
   <nav>
     <ul class="menu">
-      <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+      <li><a href="mess.html"><i class="fas fa-home"></i> Home</a></li>
       <li><a href="aboutme.html"><i class="fas fa-info-circle"></i> About</a></li>
       <li><a href="#services"><i class="fas fa-concierge-bell"></i> Services</a></li>
       <li><a href="#contact"><i class="fas fa-envelope"></i> Contact</a></li>
@@ -203,40 +203,74 @@
       <form id="messForm" novalidate>
         <!-- Step 1: Student & Mess Details -->
         <div class="step active" id="step-1">
-          <h2><i class="fas fa-user-graduate"></i> Student & Mess Details</h2>
-          <div class="form-group">
-            <label for="regNo">Registration Number</label>
-            <input type="text" class="form-control" id="regNo" name="regNo" placeholder="Enter Reg No" required aria-label="Registration Number"maxlength="30" pattern="[a-zA-Z]+">
-            <div class="error-message" id="error-regNo"></div>
+            <h2><i class="fas fa-user-graduate"></i> Student &amp; Mess Details</h2>
+            <div class="form-group">
+              <label for="regNo">Registration Number</label>
+              <input type="text" class="form-control" id="regNo" name="regNo" placeholder="Enter Reg No" required aria-label="Registration Number" maxlength="30" pattern="[a-zA-Z]+">
+              <div class="error-message" id="error-regNo"></div>
+            </div>
+            <div class="form-group">
+              <label for="studentName">Student Name</label>
+              <input type="text" class="form-control" id="studentName" name="studentName" placeholder="Enter Name" required aria-label="Student Name">
+              <div class="error-message" id="error-studentName"></div>
+            </div>
+            <div class="form-group">
+              <label for="blockRoom">Block &amp; Room Number</label>
+              <input type="text" class="form-control" id="blockRoom" name="blockRoom" placeholder="Ex: Block A, Room 101" required aria-label="Block and Room Number">
+              <div class="error-message" id="error-blockRoom"></div>
+            </div>
+            <div class="form-group">
+              <label for="messName">Name of Dining Mess</label>
+              <select class="form-control" id="messName" name="messName" required aria-label="Name of Dining Mess">
+                <option value="">-- Select --</option>
+                <option value="MAX">MAX</option>
+                <option value="ZEN">ZEN</option>
+                <option value="RPL">RPL</option>
+                <option value="SKC">SKC</option>
+                <option value="GRC">GRC</option>
+                <option value="SRRC">SRRC</option>
+                <option value="RRC">RRC</option>
+                <option value="FFPL">FFPL</option>
+                <option value="PR">PR</option>
+                <option value="Other">Other</option>
+              </select>
+              <!-- Additional input for custom mess name if "Other" is selected -->
+              <div id="otherMessContainer" style="display:none; margin-top: 1rem;">
+                <label for="diningMess">Please Specify</label>
+                <input type="text" class="form-control" id="diningMess" name="diningMess" placeholder="Enter Mess Name" aria-label="Dining Mess Name">
+              </div>
+              <div class="error-message" id="error-diningMess"></div>
+            </div>
+            <div class="form-group">
+              <label for="messType">Type of Mess</label>
+              <select class="form-control" id="messType" name="messType" required aria-label="Type of Mess">
+                <option value="">-- Select --</option>
+                <option value="Veg">Veg</option>
+                <option value="Non-Veg">Non-Veg</option>
+                <option value="Special">Special</option>
+                <option value="Night Mess">Night Mess</option>
+              </select>
+              <div class="error-message" id="error-messType"></div>
+            </div>
+            <button type="button" class="btn btn-custom float-right" onclick="nextStep()">Next <i class="fas fa-arrow-right"></i></button>
           </div>
-          <div class="form-group">
-            <label for="studentName">Student Name</label>
-            <input type="text" class="form-control" id="studentName" name="studentName" placeholder="Enter Name" required aria-label="Student Name">
-            <div class="error-message" id="error-studentName"></div>
-          </div>
-          <div class="form-group">
-            <label for="blockRoom">Block & Room Number</label>
-            <input type="text" class="form-control" id="blockRoom" name="blockRoom" placeholder="Ex: Block A, Room 101" required aria-label="Block and Room Number">
-            <div class="error-message" id="error-blockRoom"></div>
-          </div>
-          <div class="form-group">
-            <label for="diningMess">Name of Dining Mess</label>
-            <input type="text" class="form-control" id="diningMess" name="diningMess" placeholder="Enter Mess Name" required aria-label="Dining Mess Name">
-            <div class="error-message" id="error-diningMess"></div>
-          </div>
-          <div class="form-group">
-            <label for="messType">Type of Mess</label>
-            <select class="form-control" id="messType" name="messType" required aria-label="Type of Mess">
-              <option value="">-- Select --</option>
-              <option value="Veg">Veg</option>
-              <option value="Non-Veg">Non-Veg</option>
-              <option value="Special">Special</option>
-              <option value="Night Mess">Night Mess</option>
-            </select>
-            <div class="error-message" id="error-messType"></div>
-          </div>
-          <button type="button" class="btn btn-custom float-right" onclick="nextStep()">Next <i class="fas fa-arrow-right"></i></button>
-        </div>
+          
+          <script>
+            // Toggle additional custom mess name field when "Other" is selected
+            document.getElementById('messName').addEventListener('change', function() {
+              var otherMessContainer = document.getElementById('otherMessContainer');
+              var diningMessInput = document.getElementById('diningMess');
+              if (this.value === 'Other') {
+                otherMessContainer.style.display = 'block';
+                diningMessInput.setAttribute('required', 'true');
+              } else {
+                otherMessContainer.style.display = 'none';
+                diningMessInput.removeAttribute('required');
+                diningMessInput.value = ''; // clear any previous input
+              }
+            });
+          </script>
+          
         
         <!-- Step 2: Menu Details -->
         <div class="step" id="step-2" style="width: 550px">
