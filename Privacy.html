@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Privacy Policy - Mess Menu Formation System</title>
+  <!-- Google Fonts for Poppins -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+  <style>
+    :root {
+      --dark-bg: #1c1d22;
+      --accent: #7289da;
+      --footer-bg: #23272a;
+      --footer-text: #ffffff;
+      --main-font: 'Poppins', sans-serif;
+      --nav-bg: #2c2f33;
+    }
+    html, body {
+      margin: 0;
+      padding: 0;
+      font-family: var(--main-font);
+      background: var(--dark-bg);
+      color: #fff;
+    }
+    /* Flex container to push footer down */
+    .page-container {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+    /* Main content grows to fill available space */
+    .main-content {
+      flex: 1;
+      padding: 20px;
+    }
+    /* Navigation styles */
+    .menu {
+      background: var(--nav-bg);
+      padding: 10px 0;
+      list-style: none;
+      display: flex;
+      justify-content: center;
+      margin: 0;
+    }
+    .menu li { margin: 0 15px; }
+    .menu li a {
+      color: #fff;
+      text-decoration: none;
+      font-size: 20px;
+      transition: color 0.3s ease;
+    }
+    .menu li a:hover { color: var(--accent); }
+    /* Hero section */
+    .hero {
+      background: url('https://images.pexels.com/photos/256381/pexels-photo-256381.jpeg') no-repeat center center/cover;
+      height: 250px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .hero h1 {
+      font-size: 3em;
+      background: rgba(0,0,0,0.5);
+      padding: 20px;
+      border-radius: 5px;
+    }
+    /* Content styling */
+    .content {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+    /* Footer styles */
+    footer {
+      background: var(--footer-bg);
+      color: var(--footer-text);
+      text-align: center;
+      padding: 20px 0;
+    }
+    footer a {
+      color: var(--footer-text);
+      text-decoration: none;
+      margin: 0 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="page-container">
+    <!-- Navigation -->
+    <nav>
+      <ul class="menu">
+        <li><a href="mess.html"><i class="fas fa-home"></i> Home</a></li>
+        <li><a href="about.html"><i class="fas fa-info-circle"></i> About</a></li>
+        <li><a href="services.html"><i class="fas fa-concierge-bell"></i> Services</a></li>
+        <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
+        <li><a href="support.html"><i class="fas fa-life-ring"></i> Support</a></li>
+        <li><a href="feedback.html"><i class="fas fa-comment"></i> Feedback</a></li>
+      </ul>
+    </nav>
+    
+    <!-- Hero Section -->
+    <section class="hero">
+      <h1>Privacy Policy</h1>
+    </section>
+    
+    <!-- Main Content -->
+    <div class="main-content">
+      <div class="content">
+        <h2>Our Commitment to Your Privacy</h2>
+        <p>We are committed to protecting your personal information and your right to privacy. This Privacy Policy explains how we collect, use, and disclose your information when you use our Mess Menu Formation System.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vitae eros a quam malesuada porttitor. In vel risus enim. Suspendisse potenti. Phasellus a ligula in ante laoreet placerat.</p>
+      </div>
+    </div>
+    
+    <!-- Footer -->
+    <footer>
+      <p>&copy; 2025 Mess Menu Formation System. All Rights Reserved.</p>
+      <div>
+        <a href="privacy.html">Privacy</a> | 
+        <a href="terms.html">Terms</a> | 
+        <a href="support.html">Support</a> | 
+        <a href="feedback.html">Feedback</a>
+      </div>
+    </footer>
+  </div>
+  
+  <!-- Bootstrap JS and dependencies -->
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
