@@ -1,4 +1,4 @@
-Mess Menu Formation System
+Mess Menu Formation System:
 The Mess Menu Formation System is a web-based application designed to streamline the collection and management of student meal preferences in institutional dining settings. It enables students to submit their dining details, suggest food items, and provide additional comments or special requests. Administrators can generate various reports based on the collected data to aid in menu planning and decision-making.​
 
 Features
