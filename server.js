@@ -14,12 +14,6 @@ app.use(bodyParser.json());
 require('dotenv').config();
 require('dotenv').config({ path: 'C:/Users/karthik/OneDrive/Desktop/MessForm/.env' });
 
-console.log("Host:", process.env.MYSQLHOST);
-console.log("User:", process.env.MYSQLUSER);
-console.log("Password:", process.env.MYSQLPASSWORD ? "Loaded ✅" : "Not loaded ❌");
-console.log("Database:", process.env.MYSQLDATABASE);
-console.log("Port:", process.env.MYSQLPORT);
-
 const connection = mysql.createConnection({
   host: process.env.MYSQLHOST,
   user: process.env.MYSQLUSER,
