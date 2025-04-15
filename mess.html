@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mess Menu Formation System</title>
+  <!-- Google Fonts for Poppins -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <!-- Bootstrap CSS (v4.5.2) -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+  <style>
+    /* Global Base */
+    html, body {
+      width: 100%;
+      height: 100%;
+      background: #1c1d22;
+      transition: background 0.5s ease;
+      font-family: 'Poppins', sans-serif;
+      display: flex;
+      flex-direction: column;
+      margin: 0;
+      padding: 0;
+    }
+    
+    /* Main container */
+    .main {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 20px;
+    }
+    
+    /* Backgrounds for steps */
+    .bg1 { 
+      background: url('https://integrishealth.org/-/media/blog/18-april/bowls-of-superfood-fruits-and-vegetables.ashx?revision=745f638c-d9a3-4a85-8963-9436f6b71e19') no-repeat center center fixed; 
+      background-size: cover; 
+    }
+    .bg2 { 
+      background: url('https://images.pexels.com/photos/1640774/pexels-photo-1640774.jpeg') no-repeat center center fixed; 
+      background-size: cover; 
+    }
+    .bg3 { 
+      background: url('https://nutrition.org/wp-content/uploads/2022/03/Healthy-food-selection.jpg') no-repeat center center fixed; 
+      background-size: cover; 
+    }
+    
+    /* Navigation Menu */
+    .menu {
+      background: #2c2f33;
+      padding: 10px 0;
+      margin-bottom: 20px;
+      list-style: none;
+      font-family: "Varela Round", sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .menu li {
+      width: 125px;
+      height: 50px;
+      text-align: center;
+      transition: background-position-x 0.9s linear;
+    }
+    .menu li a {
+      font-size: 22px;
+      color: #ffffff;
+      text-decoration: none;
+      display: block;
+      line-height: 50px;
+      transition: all 0.45s;
+    }
+    .menu li:hover {
+      background: url("data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPHN2ZyB2ZXJzaW9uPSIxLjEiIGlkPSJMYXllcl8xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB4PSIwcHgiIHk9IjBweCIgd2lkdGg9IjM5MHB4IiBoZWlnaHQ9IjUwcHgiIGVuYWJlLWJhY2tnPSJuZXcgMCAwIDM5MCA1MCIgeG1sOndzcGFjZT0icHJlc2VydmUiPjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2NjYyIgc3Ryb2tlLXdpZHRoPSIxLjUiIHN0cm9rZS1taXRlcmxpbWl0PSIxMCIgZD0iTTAsNDcuNTg1YzAsMCw5Ny41LDAsMTMwLDBjMTMuNzUsMCwyOC43NC0zOC43NzgsNDYuMTY4LTE5LjQxNkMxOTIuNjY5LDQ2LjUsMjQzLjYwMyw0Ny42MDUsNDcuNTg1LDI2MCw0Ny41ODVjMzEuODIxLDAsMTMwLDAsMTMwLDAiLz4KPC9zdmc+Cg==");
+      animation: line 1s;
+    }
+    .menu li:hover a { 
+      color: #7289da; 
+    }
+    .menu li:not(:last-child) {
+      margin-right: 30px;
+    }
+    @keyframes line {
+      0% { background-position-x: 390px; }
+    }
+    
+    /* Form Box */
+    .form-box {
+      background: #ffffff;
+      border-radius: 8px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.7);
+      padding: 40px;
+      margin: 30px auto;
+      max-width: 1000px;
+      min-height: 700px;
+      font-family: 'Poppins', sans-serif;
+      opacity: 0;
+      animation: fadeIn 0.6s forwards;
+    }
+    .form-box h2 { 
+      margin-bottom: 20px; 
+      color: #7289da; 
+    }
+    .step { 
+      display: none; 
+    }
+    .step.active { 
+      display: block; 
+      animation: fadeIn 0.6s;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .btn-custom {
+      background-color: #7289da;
+      color: #fff;
+      border: none;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+    .btn-custom:hover {
+      background-color: #e6e6e6;
+      transform: translateY(-2px);
+    }
+    .progress {
+      height: 8px;
+      background-color: #444;
+      border-radius: 4px;
+      margin-bottom: 30px;
+    }
+    .progress-bar {
+      background-color: #7289da;
+      transition: width 0.4s ease;
+    }
+    .error {
+      border-color: #f04747;
+    }
+    .error-msg {
+      color: #f04747;
+      font-size: 0.9rem;
+      margin-top: 5px;
+    }
+    
+    /* Footer */
+    footer {
+      flex-shrink: 0;
+      background-color: #23272a;
+      color: #ffffff;
+      padding: 15px 0;
+    }
+    footer a {
+      color: #ffffff;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+    footer a:hover { 
+      color: #ffe0e0; 
+    }
+    footer .footer-links {
+      list-style: none;
+      text-align: center;
+      padding: 0;
+      margin: 0;
+    }
+    footer .footer-links li {
+      display: inline-block;
+      margin: 0 15px;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation Menu -->
+  <nav>
+    <ul class="menu">
+      <li><a href="mess.html"><i class="fas fa-home"></i> Home</a></li>
+      <li><a href="about"><i class="fas fa-info-circle"></i> About</a></li>
+      <li><a href="#services"><i class="fas fa-concierge-bell"></i> Services</a></li>
+      <li><a href="#contact"><i class="fas fa-envelope"></i> Contact</a></li>
+      <!-- Logout Button -->
+      <li><a href="#" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+    </ul>
+  </nav>
+
+  <!-- Main Container -->
+  <div class="main">
+    <div class="form-box">
+      <div class="progress">
+        <div id="progBar" class="progress-bar" role="progressbar" style="width: 33.33%;"></div>
+      </div>
+      <form id="myForm" novalidate>
+        <!-- Step 1: Student & Mess Details -->
+        <div class="step active" id="step-1">
+          <h2><i class="fas fa-user-graduate"></i> Student &amp; Mess Details</h2>
+          <div class="form-group">
+            <label for="regNo">Registration Number</label>
+            <input type="text" class="form-control" id="regNo" name="regNo" placeholder="Enter Reg No" required maxlength="30" pattern="[a-zA-Z]+">
+            <div class="error-msg" id="err-regNo"></div>
+          </div>
+          <div class="form-group">
+            <label for="stuName">Student Name</label>
+            <input type="text" class="form-control" id="stuName" name="stuName" placeholder="Enter Name" required>
+            <div class="error-msg" id="err-stuName"></div>
+          </div>
+          <div class="form-group">
+            <label for="roomNo">Block &amp; Room Number</label>
+            <input type="text" class="form-control" id="roomNo" name="roomNo" placeholder="Ex: Block A, Room 101" required>
+            <div class="error-msg" id="err-roomNo"></div>
+          </div>
+          <div class="form-group">
+            <label for="diningName">Name of Dining Mess</label>
+            <select class="form-control" id="diningName" name="diningName" required>
+              <option value="">-- Select --</option>
+              <option value="MAX">A</option>
+              <option value="ZEN">B</option>
+              <option value="RPL">C</option>
+              <option value="SKC">D</option>
+              <option value="GRC">E</option>
+              <option value="SRRC">F</option>
+              <option value="RRC">G</option>
+              <option value="FFPL">H</option>
+              <option value="PR">I</option>
+              <option value="Other">Other</option>
+            </select>
+            <!-- Extra field if "Other" is selected -->
+            <div id="otherMess" style="display:none; margin-top: 1rem;">
+              <label for="otherName">Please Specify</label>
+              <input type="text" class="form-control" id="otherName" name="otherName" placeholder="Enter Mess Name">
+            </div>
+            <div class="error-msg" id="err-otherName"></div>
+          </div>
+          <div class="form-group">
+            <label for="messType">Type of Mess</label>
+            <select class="form-control" id="messType" name="messType" required>
+              <option value="">-- Select --</option>
+              <option value="Veg">Veg</option>
+              <option value="Non-Veg">Non-Veg</option>
+              <option value="Special">Special</option>
+              <option value="Night Mess">Night Mess</option>
+            </select>
+            <div class="error-msg" id="err-messType"></div>
+          </div>
+          <button type="button" class="btn btn-custom float-right" onclick="nextStep()">Next <i class="fas fa-arrow-right"></i></button>
+        </div>
+        
+        <script>
+          // Show/hide extra field if "Other" mess is selected
+          document.getElementById('diningName').addEventListener('change', function() {
+            var extraField = document.getElementById('otherMess');
+            var otherInput = document.getElementById('otherName');
+            if (this.value === 'Other') {
+              extraField.style.display = 'block';
+              otherInput.setAttribute('required', 'true');
+            } else {
+              extraField.style.display = 'none';
+              otherInput.removeAttribute('required');
+              otherInput.value = '';
+            }
+          });
+        </script>
+        
+        <!-- Step 2: Menu Details -->
+        <div class="step" id="step-2" style="width: 550px">
+          <h2><i class="fas fa-utensils"></i> Menu Details</h2>
+          <div class="form-group">
+            <label for="foodItem">Food Item Suggestion</label>
+            <textarea class="form-control" id="foodItem" name="foodItem" rows="3" placeholder="Enter your suggestion" required></textarea>
+            <div class="error-msg" id="err-foodItem"></div>
+          </div>
+          <div class="form-group">
+            <label for="meal">Type of Meal</label>
+            <select class="form-control" id="meal" name="meal" required>
+              <option value="">-- Select --</option>
+              <option value="Breakfast">Breakfast</option>
+              <option value="Lunch">Lunch</option>
+              <option value="Snacks">Snacks</option>
+              <option value="Dinner">Dinner</option>
+              <option value="Night Mess">Night Mess</option>
+            </select>
+            <div class="error-msg" id="err-meal"></div>
+          </div>
+          <div class="form-group">
+            <label>Feasibility for Mass Production</label>
+            <div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="feasible" id="yes" value="Yes" required>
+                <label class="form-check-label" for="yes">Yes</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="feasible" id="no" value="No">
+                <label class="form-check-label" for="no">No</label>
+              </div>
+            </div>
+            <div class="error-msg" id="err-feasible"></div>
+          </div>
+          <div class="d-flex justify-content-between">
+            <button type="button" class="btn btn-secondary" onclick="prevStep()"><i class="fas fa-arrow-left"></i> Back</button>
+            <button type="button" class="btn btn-custom" onclick="nextStep()">Next <i class="fas fa-arrow-right"></i></button>
+          </div>
+        </div>
+        
+        <!-- Step 3: Additional Comments & Submit -->
+        <div class="step" id="step-3">
+          <h2><i class="fas fa-comments"></i> Additional Comments</h2>
+          <div class="form-group">
+            <label for="comments">Comments or Special Requests</label>
+            <textarea class="form-control" id="comments" name="comments" rows="4" placeholder="Enter any additional comments" required></textarea>
+            <div class="error-msg" id="err-comments"></div>
+          </div>
+          <div class="d-flex justify-content-between">
+            <button type="button" class="btn btn-secondary" onclick="prevStep()"><i class="fas fa-arrow-left"></i> Back</button>
+            <button type="button" class="btn btn-custom" onclick="submitForm()">Submit <i class="fas fa-paper-plane"></i></button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <ul class="footer-links">
+        <li><a href="Privacy">Privacy</a></li> 
+        <li><a href="Terms">Terms</a></li>
+        <li><a href="Support">Support</a></li>
+        <li><a href="Feedback">Feedback</a></li>
+      </ul>
+    </div>
+  </footer>
+  
+  <!-- JavaScript for Form Navigation, Validation, Autosave, and Logout -->
+  <script>
+    let current = 1;
+    const total = 3;
+    
+    // Update body background for current step using simple class names
+    function updateBg(step) {
+      document.body.className = "";
+      if (step === 1) { document.body.classList.add("bg1"); }
+      else if (step === 2) { document.body.classList.add("bg2"); }
+      else if (step === 3) { document.body.classList.add("bg3"); }
+    }
+    
+    // Show the given step and update progress
+    function showStep(step) {
+      document.querySelectorAll('.step').forEach(function(el) {
+        el.classList.remove('active');
+      });
+      const stepEl = document.getElementById('step-' + step);
+      if (stepEl) { stepEl.classList.add('active'); }
+      const percent = (step / total) * 100;
+      document.getElementById('progBar').style.width = percent + '%';
+      updateBg(step);
+      saveData();
+    }
+    
+    // Validate required fields in the current step
+    function validateStep(step) {
+      let valid = true;
+      const fields = document.querySelectorAll('#step-' + step + ' [required]');
+      fields.forEach(function(field) {
+        if (field.type === "radio") {
+          const group = field.name;
+          if (!document.querySelector('#step-' + step + ' [name="' + group + '"]:checked')) {
+            field.classList.add('error');
+            const errDiv = document.getElementById('err-' + field.id);
+            if (errDiv) { errDiv.textContent = "This field is required."; }
+            valid = false;
+          } else {
+            field.classList.remove('error');
+            const errDiv = document.getElementById('err-' + field.id);
+            if (errDiv) { errDiv.textContent = ""; }
+          }
+        } else {
+          if (!field.value.trim()) {
+            field.classList.add('error');
+            const errDiv = document.getElementById('err-' + field.id);
+            if (errDiv) { errDiv.textContent = "This field is required."; }
+            valid = false;
+          } else {
+            field.classList.remove('error');
+            const errDiv = document.getElementById('err-' + field.id);
+            if (errDiv) { errDiv.textContent = ""; }
+          }
+        }
+      });
+      if (!valid) {
+        const firstErr = document.querySelector('.error');
+        if (firstErr) { firstErr.scrollIntoView({ behavior: 'smooth', block: 'center' }); }
+      }
+      return valid;
+    }
+    
+    function nextStep() {
+      if (validateStep(current)) {
+        current++;
+        if (current > total) current = total;
+        showStep(current);
+      }
+    }
+    
+    function prevStep() {
+      current--;
+      if (current < 1) current = 1;
+      showStep(current);
+    }
+    
+    // Save form data to localStorage (using a simple key)
+    function saveData() {
+      const form = document.getElementById("myForm");
+      const obj = {};
+      new FormData(form).forEach((value, key) => { obj[key] = value; });
+      localStorage.setItem("myFormData", JSON.stringify(obj));
+    }
+    
+    function submitForm() {
+      if (validateStep(current)) {
+        localStorage.removeItem("myFormData");
+        alert("Form submitted successfully!");
+        document.getElementById("myForm").reset();
+        current = 1;
+        showStep(current);
+      }
+    }
+    
+    // Autosave every 10 seconds
+    setInterval(saveData, 10000);
+    
+    // Warn user if leaving with unsaved changes
+    window.onbeforeunload = function() {
+      return "You have unsaved changes. Are you sure you want to leave?";
+    };
+    
+    // Load saved data on page load
+    document.addEventListener("DOMContentLoaded", function() {
+      const saved = localStorage.getItem("myFormData");
+      if (saved) {
+        const data = JSON.parse(saved);
+        for (const key in data) {
+          const field = document.querySelector('[name="'+key+'"]');
+          if (field) {
+            field.value = data[key];
+            if (key === 'feasible') {
+              const radio = document.querySelector('[name="feasible"][value="'+data[key]+'"]');
+              if (radio) radio.checked = true;
+            }
+          }
+        }
+      }
+      updateBg(current);
+      showStep(current);
+    });
+    
+    // Logout: redirect to login.html when the logout button is clicked
+    document.getElementById("logoutBtn").addEventListener("click", function(e) {
+      e.preventDefault();
+      window.location.href = "login.html";
+    });
+  </script>
+</body>
+</html>
